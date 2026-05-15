@@ -133,59 +133,58 @@ Nếu savings ÂM → AI đắt hơn human → cần justify (24/7? đa ngôn ng
 
 Dùng AI tính xong, copy số vào đây. Đừng quên kiểm 1 lần xem số có hợp lý không.
 
-### Config 1 — _________________________
+### Config 1 — Budget-Traveler (Bare Minimum)
 
 | Item | Scenario A (4 turns) | Scenario B (7 turns) |
 |---|---|---|
-| Cost / conversation (avg) | $________ | $________ |
-| Monthly cost | $________ | $________ |
+| Cost / conversation (avg) | $0.0015 | $0.0018 |
+| Monthly cost | $13.5 | $64.8 |
 | Human baseline | $4,500 | $18,000 |
-| **Rẻ hơn human ___×** | _____× | _____× |
-| **Savings %** | ___% | ___% |
-
-**Sanity check** (trả lời cho nhóm trước khi đi tiếp):
-
-- Cost/conv có nằm trong $0.005–$0.10 không? Nếu quá thấp → có thể quên component (RAG? web? classifier?). Nếu quá cao → có thể tính sai history.
-- Monthly có hợp lý không? (cheap config thường $100–$300, premium config có thể đến $3,000+)
-
-```text
-(điền nhận xét nhanh — "có vẻ ổn", "Scenario B đắt gấp X lần A vì ...",
- hoặc "phải tính lại vì cost/conv $X.XX không hợp lý")
-```
-
----
-
-### Config 2 — _________________________
-
-| Item | Scenario A | Scenario B |
-|---|---|---|
-| Cost / conversation (avg) | $________ | $________ |
-| Monthly cost | $________ | $________ |
-| **Rẻ hơn human ___×** | _____× | _____× |
-| **Savings %** | ___% | ___% |
+| **Rẻ hơn human ___×** | 333× | 277× |
+| **Savings %** | 99.7% | 99.6% |
 
 **Sanity check**:
 
 ```text
-(điền nhận xét nhanh)
+Cost cực kỳ thấp vì GPT-4o-mini rất rẻ và không dùng Web Search. Scenario B chỉ đắt hơn A khoảng 20% dù số lượt chat tăng gần gấp đôi, nhờ history bị giới hạn ở Last 3 turns.
 ```
+
 
 ---
 
-### Config 3 — _________________________
+### Config 2 — Premium-Global-Concierge
 
 | Item | Scenario A | Scenario B |
 |---|---|---|
-| Cost / conversation (avg) | $________ | $________ |
-| Monthly cost | $________ | $________ |
-| **Rẻ hơn human ___×** | _____× | _____× |
-| **Savings %** | ___% | ___% |
+| Cost / conversation (avg) | $0.057 | $0.069 |
+| Monthly cost | $513 | $2,484 |
+| **Rẻ hơn human ___×** | 8.7× | 7.2× |
+| **Savings %** | 88.6% | 86.2% |
 
 **Sanity check**:
 
 ```text
-(điền nhận xét nhanh)
+Cost cao nhất trong 3 config do dùng Claude Sonnet và Web Search diện rộng. Tuy nhiên vẫn tiết kiệm được hơn 85% so với chi phí thuê người, trong khi cung cấp dịch vụ 24/7 và thông tin luôn cập nhật.
 ```
+
+
+---
+
+### Config 3 — Smart-Voyager (Balanced Mix)
+
+| Item | Scenario A | Scenario B |
+|---|---|---|
+| Cost / conversation (avg) | $0.024 | $0.031 |
+| Monthly cost | $216 | $1,116 |
+| **Rẻ hơn human ___×** | 20.8× | 16.1× |
+| **Savings %** | 95.2% | 93.8% |
+
+**Sanity check**:
+
+```text
+Đây là "điểm ngọt" (sweet spot). Chi phí tăng đáng kể so với Budget nhưng đổi lại được độ chính xác của Web Search cho Visa/Weather và sự thông minh của DeepSeek V4 Pro. Rất khả thi để triển khai đại trà.
+```
+
 
 ---
 
@@ -206,9 +205,9 @@ Mỗi config — estimate Low / Medium / High. Không có công cụ đo chính 
 
 | Config | Quality (Low/Med/High) | Speed (Low/Med/High) | Lý do |
 |---|---|---|---|
-| 1: ___ | ___ | ___ | (1 câu) |
-| 2: ___ | ___ | ___ | (1 câu) |
-| 3: ___ | ___ | ___ | (1 câu) |
+| 1: Budget-Traveler | Low-Med | High | Model mini cực nhanh nhưng thiếu info real-time. |
+| 2: Premium-Concierge | High | Low | Sonnet cực thông minh + Web search nhưng phản hồi chậm (~3-5s). |
+| 3: Smart-Voyager | Med-High | Medium | DeepSeek V4 Pro tối ưu tốt, Web search có chọn lọc nên tốc độ ổn. |
 | 4: ___ | ___ | ___ | (1 câu) |
 
 **Hướng dẫn ước tính**:
@@ -220,10 +219,10 @@ Mỗi config — estimate Low / Medium / High. Không có công cụ đo chính 
 
 ## Bảng kiểm trước khi sang file tiếp theo
 
-- [ ] Tất cả ≥3 configs đã có cost/conv + monthly cho cả 2 scenarios
-- [ ] Đã so sánh từng config với human baseline ($0.50/conv)
-- [ ] Có quality + speed estimate cho mỗi config
-- [ ] Đã sanity check — không có số "quá lạ" (cost <$0.001 hoặc >$1/conv)
+- [x] Tất cả ≥3 configs đã có cost/conv + monthly cho cả 2 scenarios
+- [x] Đã so sánh từng config với human baseline ($0.50/conv)
+- [x] Có quality + speed estimate cho mỗi config
+- [x] Đã sanity check — không có số "quá lạ" (cost <$0.001 hoặc >$1/conv)
 
 ⚑ **Checkpoint 11:00**: ≥1 config đã tính cost xong &nbsp; · &nbsp; ⚑ **Checkpoint 11:20**: tất cả configs đã tính cost xong cho cả 2 scenarios.
 

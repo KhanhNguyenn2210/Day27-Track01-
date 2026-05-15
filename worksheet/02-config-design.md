@@ -25,22 +25,23 @@ Tham khảo bảng pricing chi tiết tại `cost-reference-card.md` mục **3. 
 **Tên config** (gợi mở: "Budget Bot", "Bare Minimum", "Lean Mode", "Night Mode" — đặt tên có cá tính):
 
 ```text
-(điền tên vào đây)
+Budget-Traveler (Bare Minimum)
 ```
+
 
 ### 3 Knobs
 
 **① Model tier**:
 
 ```text
-Response model: __________________ → giá $_____ / $_____  per 1M tokens (input/output)
-Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (hoặc keyword = $0)
+Response model: GPT-4o-mini → giá $0.15 / $0.60 per 1M tokens (input/output)
+Classifier model: GPT-4o-mini → giá $0.15 / $0.60 per 1M tokens
 ```
 
 **② Web search**:
 
 ```text
-□ OFF
+☑ OFF
 □ ON selective — bật cho intent: __________________
 □ ON broad
 ```
@@ -48,30 +49,27 @@ Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (ho
 **③ History management**:
 
 ```text
-□ Last 3
+☑ Last 3
 □ Last 5
 □ Full
 □ Summarize every ___ turns
 ```
 
+
 ### Lý do nhóm chọn config này
 
-Trước khi viết, tự hỏi:
-
-- Config này phục vụ tình huống nào tốt nhất? (mùa thấp điểm? night-time? volume cao đột biến?)
-- Trade-off chính là gì? (Rẻ nhưng kém chất lượng? Đắt nhưng chính xác?)
-- Khách hàng nào sẽ hài lòng nhất với config này? Khách nào sẽ thất vọng?
-
 ```text
-(điền 2–3 câu lý do vào đây)
+1. Phục vụ giai đoạn mùa thấp điểm hoặc thử nghiệm ban đầu khi ưu tiên hàng đầu là kiểm soát chi phí.
+2. Phù hợp cho các câu hỏi FAQ đơn giản trong Knowledge Base mà không cần dữ liệu thời gian thực.
+3. Giảm thiểu chi phí tích lũy tokens từ lịch sử chat cho những cuộc hội thoại ngắn.
 ```
 
 ### Rủi ro lớn nhất của config này
 
 ```text
-(điền 1 câu rủi ro — ví dụ: "Visa info có thể outdated nếu web OFF",
- "Khách quên context khi history Last 3", "Cost spike nếu volume tăng đột biến")
+Thông tin về chính sách Visa hoặc sự kiện có thể bị lỗi thời (outdated) do không bật Web Search.
 ```
+
 
 ---
 
@@ -80,16 +78,17 @@ Trước khi viết, tự hỏi:
 **Tên config**:
 
 ```text
-(điền tên vào đây)
+Premium-Global-Concierge
 ```
+
 
 ### 3 Knobs
 
 **① Model tier**:
 
 ```text
-Response model: __________________ → giá $_____ / $_____  per 1M tokens
-Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (hoặc keyword)
+Response model: Claude Sonnet 4.6 → giá $3.00 / $15.00 per 1M tokens
+Classifier model: GPT-4o-mini → giá $0.15 / $0.60 per 1M tokens
 ```
 
 **② Web search**:
@@ -97,7 +96,7 @@ Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (ho
 ```text
 □ OFF
 □ ON selective — bật cho intent: __________________
-□ ON broad
+☑ ON broad
 ```
 
 **③ History management**:
@@ -105,21 +104,25 @@ Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (ho
 ```text
 □ Last 3
 □ Last 5
-□ Full
+☑ Full
 □ Summarize every ___ turns
 ```
+
 
 ### Lý do nhóm chọn config này
 
 ```text
-(điền 2–3 câu lý do vào đây)
+1. Dành riêng cho đối tượng khách hàng VIP hoặc các tour cao cấp, nơi chất lượng phục vụ là ưu tiên số 1.
+2. Đảm bảo bot không bao giờ quên các chi tiết quan trọng (budget, sở thích) nhờ Full History.
+3. Luôn cung cấp thông tin mới nhất và chính xác nhất thông qua Web Search diện rộng.
 ```
 
 ### Rủi ro lớn nhất của config này
 
 ```text
-(điền 1 câu rủi ro)
+Chi phí vận hành cực cao, có thể gây lỗ nếu không kiểm soát được số lượng tin nhắn từ người dùng.
 ```
+
 
 ---
 
@@ -128,23 +131,24 @@ Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (ho
 **Tên config**:
 
 ```text
-(điền tên vào đây)
+Smart-Voyager (Balanced Mix)
 ```
+
 
 ### 3 Knobs
 
 **① Model tier**:
 
 ```text
-Response model: __________________ → giá $_____ / $_____  per 1M tokens
-Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (hoặc keyword)
+Response model: DeepSeek V4 Pro → giá $1.74 / $3.48 per 1M tokens
+Classifier model: GPT-4o-mini → giá $0.15 / $0.60 per 1M tokens
 ```
 
 **② Web search**:
 
 ```text
 □ OFF
-□ ON selective — bật cho intent: __________________
+☑ ON selective — bật cho intent: Visa, Weather
 □ ON broad
 ```
 
@@ -152,22 +156,26 @@ Classifier model: __________________ → giá $_____ / $_____  per 1M tokens (ho
 
 ```text
 □ Last 3
-□ Last 5
+☑ Last 5
 □ Full
 □ Summarize every ___ turns
 ```
 
+
 ### Lý do nhóm chọn config này
 
 ```text
-(điền 2–3 câu lý do vào đây)
+1. Sử dụng DeepSeek V4 Pro để đạt chất lượng tương đương các model Strong nhưng với mức giá tối ưu hơn (rẻ hơn 4-5 lần so với Sonnet).
+2. Kết hợp Web Search có chọn lọc cho các thông tin nhạy cảm (Visa, Thời tiết) để vừa đảm bảo độ chính xác vừa tiết kiệm API cost.
+3. Cân bằng trải nghiệm người dùng với Last 5 turns, đủ cho hầu hết các luồng hội thoại du lịch.
 ```
 
 ### Rủi ro lớn nhất của config này
 
 ```text
-(điền 1 câu rủi ro)
+Phụ thuộc vào sự ổn định của API DeepSeek và độ trễ (latency) có thể cao hơn các Big Tech providers.
 ```
+
 
 ---
 
@@ -197,11 +205,11 @@ Model: ___    Web: ___    History: ___
 
 ## Bảng kiểm trước khi tính cost
 
-- [ ] ≥3 configs đã đặt tên (không chỉ "Config 1/2/3")
-- [ ] Mỗi config đã chốt rõ 3 knobs (không còn ô trống)
-- [ ] Mỗi config có ≥2 câu lý do
-- [ ] 3 configs đủ khác biệt — không phải chỉ đổi mỗi 1 knob nhỏ
-- [ ] Nhóm đồng thuận đây là 3 configs đáng so sánh
+- [x] ≥3 configs đã đặt tên (không chỉ "Config 1/2/3")
+- [x] Mỗi config đã chốt rõ 3 knobs (không còn ô trống)
+- [x] Mỗi config có ≥2 câu lý do
+- [x] 3 configs đủ khác biệt — không phải chỉ đổi mỗi 1 knob nhỏ
+- [x] Nhóm đồng thuận đây là 3 configs đáng so sánh
 
 **Nếu 3 configs quá giống nhau** (chỉ đổi model, knobs khác giống hệt) → quay lại tweak. Mục đích là thấy tradeoff — configs giống nhau quá → không thấy tradeoff.
 
